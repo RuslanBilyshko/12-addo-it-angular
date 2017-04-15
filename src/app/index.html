@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Angular SPA</title>
-
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <!-- <p>
@@ -15,7 +15,7 @@
   <input type="text" ng-model="hello"/><br>
   {{hello}}
 </p> -->
-<div >
+<div>
     <div class="container">
         <div class="row">
             <!--<input type="text" ng-model="foo">-->
@@ -24,10 +24,30 @@
             <!--Click me-->
             <!--</button>-->
             <br><br>
+            <header class="col-sm-12">
+                <h1 class="logo">Car List</h1>
+            </header>
+
+            <div class="add_form">
+                <form class="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input class="form-control" type="text" placeholder="Цена">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only"></label>
+                        <input type="text" class="form-control" placeholder="Пробег">
+                    </div>
+                    <button type="submit" class="btn btn-default">Добавить</button>
+                </form>
+            </div>
+
 
             <div ng-controller="CarController" class="car-list">
-                <div class="car col-sm-4 row row-{{item.id}}" bar ng-repeat="item in list">
-                    <img class="img-responsive" src="images/{{item.img}}" alt="">
+                <div id="car-{{item.id}}" class="car col-sm-4" bar ng-repeat="item in list">
+                    <div class="car_img"><img class="img-responsive" src="images/{{item.img}}" alt=""></div>
                     <h4 class="car_name">{{item.name}}</h4>
                     <div class="car_price">${{item.price}}</div>
                     <div class="car_info">
