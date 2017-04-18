@@ -48,13 +48,13 @@
                     <div class="input-group">
                         <label class="sr-only"></label>
                         <select ng-model="newCar.year"
-                                class="form-control" >
-                            <option >-- Год выпуска --</option>
-                            <option ng-selected="n == newCar.year" ng-repeat="n in years" value="{{n}}">{{n}}</option>
+                                class="form-control"
+                                ng-options="year.value as year.name for year in years"
+                        >
                         </select>
                     </div>
 
-                                        <div class="input-group">
+                    <div class="input-group">
                         <label class="sr-only"></label>
                         <input ng-model="newCar.img"  type="text" class="form-control" placeholder="Фото">
                     </div>

@@ -43,10 +43,10 @@ app.controller('CarController', function ($scope) {
     $scope.currentDate = new Date();
     $scope.text = "hello world";
 
-    $scope.years = {};
+    $scope.years = [];
 
     for(var i = 1990; i < 2017; i++)
-        $scope.years[i] = i;
+        $scope.years.push({name: i, value: i});
 
     $scope.resetCar = function () {
 
@@ -54,7 +54,7 @@ app.controller('CarController', function ($scope) {
             name: "VOLVO",
             price: 25000,
             mileage: 120,
-            year: 2005,
+            year: 2007,
             img: "auto1.jpg"
 
         }
