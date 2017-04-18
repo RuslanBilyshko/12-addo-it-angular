@@ -42,4 +42,31 @@ app.controller('CarController', function ($scope) {
 
     $scope.currentDate = new Date();
     $scope.text = "hello world";
+
+    $scope.years = {};
+
+    for(var i = 1990; i < 2017; i++)
+        $scope.years[i] = i;
+
+    $scope.resetCar = function () {
+
+        $scope.newCar = {
+            name: "VOLVO",
+            price: 25000,
+            mileage: 120,
+            year: 2005,
+            img: "auto1.jpg"
+
+        }
+    };
+
+    $scope.resetCar();
+    
+    $scope.addCar = function () {
+
+        $scope.list.push($scope.newCar);
+        $scope.resetCar();
+    }
+
+
 });
