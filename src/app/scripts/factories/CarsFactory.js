@@ -68,5 +68,9 @@ app.factory('CarsFactory', function () {
         });
     };
 
+    service.removeCar = function (car) {
+        carList = _.pull(carList, car);
+    };
+
     return service;
 });

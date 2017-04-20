@@ -47,6 +47,10 @@ app.controller('CarsCtrl', function (CarsFactory) {
      */
     this.cars = CarsFactory.getCars();
 
+    this.refreshCarList = function () {
+      this.cars = CarsFactory.getCars();
+    };
+
     /**
      * Год выпуска для формы добавления
      * @type {{}}
@@ -85,6 +89,29 @@ app.controller('CarsCtrl', function (CarsFactory) {
         CarsFactory.addCar(this.newCar);
         this.resetCar();
     };
+
+    this.removeCar = function (car) {
+        CarsFactory.removeCar(car);
+    };
+
+    /**
+     * FILTERS And Sorted
+     */
+    this.sortedByProperty = 'name';
+    this.sortedProperties = {
+        name: "Марка",
+        price: "Цена",
+        mileage: "Пробег",
+        year: "Год выпуска"
+    };
+
+
+    this.sortedCars = function () {
+        console.log(this.sortedByProperty);
+        this.cars = _.sortBy(this.cars, this.sortedByProperty);
+    };
+
+    this.sortedCars();
 
 
 });

@@ -20,15 +20,37 @@
             <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}}" ng-controller="CarsCtrl as CarsCtrl">
 
                 <section class="filters col-sm-12">
-                    <button ng-click="CarsCtrl.setViewTypeList()" class="btn btn-default btn-sm {{CarsCtrl.classes.listActive}}">List View</button>
-                    <button ng-click="CarsCtrl.setViewTypeRow()" class="btn btn-default btn-sm {{CarsCtrl.classes.rowActive}}">Row View</button>
+
+                    <div class="sorted-form">
+                        <div class="input-group">
+                            <label>Сортировать по:</label>
+                        <select ng-change="CarsCtrl.sortedCars()"
+                                ng-options="x as y for (x, y) in CarsCtrl.sortedProperties"
+                                ng-model="CarsCtrl.sortedByProperty"
+                                class=""
+                        ></select>
+                        </div>
+                    </div>
+
+                    <div class="list-types-buttons">
+                        <button ng-click="CarsCtrl.setViewTypeList()"
+                                class="btn btn-default btn-type-list btn-sm {{CarsCtrl.classes.listActive}}">&nbsp;
+                        </button>
+                        <button ng-click="CarsCtrl.setViewTypeRow()"
+                                class="btn btn-default btn-type-row btn-sm {{CarsCtrl.classes.rowActive}}">&nbsp;
+                        </button>
+                    </div>
+
                 </section>
 
 
                 <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
                      ng-repeat="car in CarsCtrl.cars">
                     <div class="editing-car-buttons">
-                        <button class="btn btn-danger btn-remove-car">Remove</button>
+                        <button
+                                class="btn btn-danger btn-sm btn-remove-car"
+                                ng-click="CarsCtrl.removeCar(car)"
+                        ></button>
                     </div>
                     <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
                         <img class="img-responsive" src="./images/{{car.img}}" alt="">
@@ -85,6 +107,7 @@
 <script src="bower_components/lodash/dist/lodash.min.js" charset="utf-8"></script>
 <script src="scripts/app.js" charset="utf-8"></script>
 <script src="scripts/controllers/CarsCtrl.js" charset="utf-8"></script>
+<script src="scripts/controllers/CarCtrl.js" charset="utf-8"></script>
 <script src="scripts/factories/CarsFactory.js" charset="utf-8"></script>
 <!-- endbuild -->
 </body>
