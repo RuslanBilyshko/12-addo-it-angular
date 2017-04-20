@@ -8,94 +8,32 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<!-- <p>
-  2+3={{2+3}}
-</p>
-<p>
-  <input type="text" ng-model="hello"/><br>
-  {{hello}}
-</p> -->
 <div>
-    <div class="container" ng-controller="CarController">
+    <div class="container">
         <div class="row">
-            <!--<input type="text" ng-model="foo">-->
-            <!--{{foo}}-->
-            <!--<button ng-click="myFirstClick()" type="button">-->
-            <!--Click me-->
-            <!--</button>-->
-            <br><br>
             <header class="col-sm-12">
                 <h1 class="logo">Car List</h1>
             </header>
-
-            <div class="add_form_wrapper">
-                <form class="form" ng-submit="addCar()">
-                    <div class="input-group">
-                        <label class="sr-only"></label>
-                        <input ng-model="newCar.name" class="form-control" type="text" placeholder="Марка">
-                    </div>
-
-                    <div class="input-group">
-                        <label class="sr-only"></label>
-                        <div class="input-group-addon">$</div>
-                        <input ng-model="newCar.price" type="text" class="form-control" placeholder="Цена">
-                    </div>
-                    <div class="input-group">
-                        <label class="sr-only"></label>
-                        <div class="input-group-addon">км</div>
-                        <input ng-model="newCar.mileage"  type="text" class="form-control" placeholder="Пробег">
-                    </div>
-                    <div class="input-group">
-                        <label class="sr-only"></label>
-                        <select ng-model="newCar.year"
-                                class="form-control"
-                                ng-options="year.value as year.name for year in years"
-                        >
-                        </select>
-                    </div>
-
-                    <div class="input-group">
-                        <label class="sr-only"></label>
-                        <input ng-model="newCar.img"  type="text" class="form-control" placeholder="Фото">
-                    </div>
-
-
-                    <button type="submit" class="btn btn-default">Добавить</button>
-                </form>
-            </div>
-
-
-            <div class="car-list">
-                <div id="car-{{item.id}}" class="car col-sm-4" bar ng-repeat="item in list">
-                    <div class="car_img"><img class="img-responsive" src="./images/{{item.img}}" alt=""></div>
-                    <h4 class="car_name">{{item.name}}</h4>
-                    <div class="car_price">${{item.price}}</div>
+            <section class="car-list" ng-controller="CarsCtrl as CarsCtrl">
+                <div id="car-{{car.id}}" class="car col-sm-4" ng-repeat="car in CarsCtrl.lists">
+                    <div class="car_img"><img class="img-responsive" src="./images/{{car.img}}" alt=""></div>
+                    <h4 class="car_name">{{car.name}}</h4>
+                    <div class="car_price">${{car.price}}</div>
                     <div class="car_info">
-                        <span class="car_year">{{item.year}}</span>
-                        <span class="car_mileage">{{item.mileage}}</span>
+                        <span class="car_year">{{car.year}}</span>
+                        <span class="car_mileage">{{car.mileage}}</span>
                     </div>
                 </div>
-            </div>
-
-            <!--<p>-->
-            <!--{{currentDate | date | world}}-->
-            <!--</p>-->
-
-            <!--<p>-->
-            <!--{{text | uppercase }}-->
-            <!--</p>-->
-            <!--<p bar>-->
-            <!--{{text | world }}-->
-            <!--</p>-->
+            </section>
         </div>
     </div>
 </div>
 <!-- build:js scripts/app.js -->
 <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+<script src="bower_components/lodash/dist/lodash.min.js" charset="utf-8"></script>
 <script src="scripts/app.js" charset="utf-8"></script>
-<script src="scripts/filters/world.js" charset="utf-8"></script>
-<script src="scripts/directives/click.js" charset="utf-8"></script>
-<script src="scripts/controllers/CarController.js" charset="utf-8"></script>
+<script src="scripts/controllers/CarsCtrl.js" charset="utf-8"></script>
+<script src="scripts/factories/CarsFactory.js" charset="utf-8"></script>
 <!-- endbuild -->
 </body>
 </html>
