@@ -1,7 +1,12 @@
 app.factory('CarsFactory', function () {
     var service = {};
 
-    var lists = [
+    /**
+     * Сдесь будет заглушка для получения
+     * списка авто с сервера
+     * @type {[*]}
+     */
+    var carList = [
         {
             id: 1,
             img: 'auto1.jpg',
@@ -36,8 +41,31 @@ app.factory('CarsFactory', function () {
         }
     ];
 
-    service.getLists = function () {
-        return lists;
+    /**
+     * Получение списка авто
+     * @returns {*[]}
+     */
+    service.getCars = function () {
+        return carList;
+    };
+
+    /**
+     * Добавление авто
+     * @param newCar
+     */
+    service.addCar = function (newCar) {
+        /**
+         * Сдесь, я так понимаю будет запрос на сервер
+         * для добавления нового атомобиля
+         */
+        carList.push({
+            id: _.uniqueId('car_'),
+            name: newCar.name,
+            img: newCar.img,
+            price: newCar.price,
+            year: newCar.year,
+            mileage: newCar.mileage
+        });
     };
 
     return service;

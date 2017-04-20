@@ -1,11 +1,45 @@
-.car-list {
-  .car {
-      padding: 15px;
-    .car_img {
-      img {
+$default_padding: 15px;
 
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none;
+}
+
+.car-list {
+
+  .filters {
+
+      margin:$default_padding 0;
+  }
+
+  .car {
+    position: relative;
+    padding: $default_padding;
+
+    .car_img, .car_info {
+      padding: 0;
+    }
+
+    .editing-car-buttons {
+      position: absolute;
+      right: $default_padding*2;
+      top: $default_padding*2;
+      z-index: 99;
+
+    }
+  }
+
+  &.car-list-type-list {
+
+    .car {
+
+      border: #dddddd solid 1px;
+      margin-bottom: 5px;
+
+      .car_info {
+        padding: 0 $default_padding;
       }
     }
+
   }
 }
 
@@ -22,4 +56,5 @@ header {
 .add_form_wrapper {
   margin: 15px;
   display: inline-block;
+
 }

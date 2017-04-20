@@ -5,26 +5,78 @@
     <meta charset="utf-8">
     <title>Angular SPA</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body ng-cloak>
 <div>
     <div class="container">
         <div class="row">
             <header class="col-sm-12">
                 <h1 class="logo">Car List</h1>
             </header>
-            <section class="car-list" ng-controller="CarsCtrl as CarsCtrl">
-                <div id="car-{{car.id}}" class="car col-sm-4" ng-repeat="car in CarsCtrl.lists">
-                    <div class="car_img"><img class="img-responsive" src="./images/{{car.img}}" alt=""></div>
-                    <h4 class="car_name">{{car.name}}</h4>
-                    <div class="car_price">${{car.price}}</div>
-                    <div class="car_info">
+
+
+            <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}}" ng-controller="CarsCtrl as CarsCtrl">
+
+                <section class="filters col-sm-12">
+                    <button ng-click="CarsCtrl.setViewTypeList()" class="btn btn-default btn-sm {{CarsCtrl.classes.listActive}}">List View</button>
+                    <button ng-click="CarsCtrl.setViewTypeRow()" class="btn btn-default btn-sm {{CarsCtrl.classes.rowActive}}">Row View</button>
+                </section>
+
+
+                <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
+                     ng-repeat="car in CarsCtrl.cars">
+                    <div class="editing-car-buttons">
+                        <button class="btn btn-danger btn-remove-car">Remove</button>
+                    </div>
+                    <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
+                        <img class="img-responsive" src="./images/{{car.img}}" alt="">
+                    </div>
+                    <div class="car_info col-sm-{{CarsCtrl.classes.widthInfo}}">
+                        <h4 class="car_name">{{car.name}}</h4>
+                        <div class="car_price">${{car.price}}</div>
                         <span class="car_year">{{car.year}}</span>
                         <span class="car_mileage">{{car.mileage}}</span>
                     </div>
                 </div>
+
+                <div class="add_form_wrapper">
+                    <form class="form" ng-submit="CarsCtrl.addCar()">
+                        <div class="input-group">
+                            <label>Марка</label>
+                            <input ng-model="CarsCtrl.newCar.name" class="form-control" type="text" placeholder="Марка">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Цена</label>
+                            <input ng-model="CarsCtrl.newCar.price" type="text" class="form-control" placeholder="Цена">
+                        </div>
+                        <div class="input-group">
+                            <label>Пробег</label>
+                            <input ng-model="CarsCtrl.newCar.mileage" type="text" class="form-control"
+                                   placeholder="Пробег">
+                        </div>
+                        <div class="input-group">
+                            <label>Год выпуска</label>
+                            <select ng-model="CarsCtrl.newCar.year"
+                                    ng-options="x for (x, y) in CarsCtrl.years"
+                                    class="form-control">
+                                <option value="">-- Год выпуска --</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Фото</label>
+                            <input ng-model="CarsCtrl.newCar.img" type="text" class="form-control" placeholder="Фото">
+                        </div>
+                        <button type="submit" class="btn btn-success">Добавить</button>
+                    </form>
+                </div>
+
             </section>
+
+
         </div>
     </div>
 </div>
