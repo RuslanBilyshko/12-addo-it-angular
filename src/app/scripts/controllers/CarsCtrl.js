@@ -47,9 +47,6 @@ app.controller('CarsCtrl', function (CarsFactory) {
      */
     this.cars = CarsFactory.getCars();
 
-    this.refreshCarList = function () {
-      this.cars = CarsFactory.getCars();
-    };
 
     /**
      * Год выпуска для формы добавления
@@ -90,9 +87,9 @@ app.controller('CarsCtrl', function (CarsFactory) {
         this.resetCar();
     };
 
-    this.removeCar = function (car) {
-        CarsFactory.removeCar(car);
-    };
+    // this.removeCar = function (car) {
+    //     CarsFactory.removeCar(car);
+    // };
 
     /**
      * FILTERS And Sorted
