@@ -38,6 +38,38 @@ app.factory('CarsFactory', function () {
             price: 16300,
             year: 2016,
             mileage: 210
+        },
+        {
+            id: 5,
+            img: 'auto1.jpg',
+            name: 'Suzuki SX4',
+            price: 3200,
+            year: 2003,
+            mileage: 120
+        },
+        {
+            id: 6,
+            img: 'auto1.jpg',
+            name: 'Nissan Leaf Sk',
+            price: 9300,
+            year: 2004,
+            mileage: 90
+        },
+        {
+            id: 7,
+            img: 'auto1.jpg',
+            name: 'BMW 528',
+            price: 2600,
+            year: 1997,
+            mileage: 195
+        },
+        {
+            id: 8,
+            img: 'auto1.jpg',
+            name: 'Opel Vivaro',
+            price: 5900,
+            year: 2011,
+            mileage: 210
         }
     ];
 
@@ -73,6 +105,17 @@ app.factory('CarsFactory', function () {
     service.removeCar = function (car) {
         carList = _.pull(carList, car);
     };
+
+    carList = _.sortBy(carList, 'name');
+
+    // carList = _.filter(carList, function (o) {
+    //     return o.year > 2000 && o.year < 2015;
+    // });
+
+    service.sortedCars = function (property) {
+        carList = _.sortBy(carList, property);
+    };
+
 
     return service;
 });

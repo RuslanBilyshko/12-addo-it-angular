@@ -44,6 +44,9 @@ $default_padding: 15px;
       z-index: 99;
 
       .btn-remove-car {
+        display: none;
+
+
         &:before {
           font-family: FontAwesome;
           content: "\f00d";
@@ -51,6 +54,12 @@ $default_padding: 15px;
       }
 
 
+    }
+
+    &:hover {
+      .btn-remove-car {
+        display: block;
+      }
     }
   }
 
@@ -89,6 +98,29 @@ header {
 
 .add_form_wrapper {
   margin: 15px;
-  display: inline-block;
+  width: 100%;
+  clear: both;
+  display: block;
 
+}
+
+#pagination {
+  text-align: center;
+}
+
+.filters {
+  padding: 5px;
+  border: #ddd solid 1px;
+
+  label {
+    width: 100%;
+  }
+
+  .user-filters {
+    padding: 0;
+  }
+
+  .list-types-buttons {
+    padding: 0;
+  }
 }
