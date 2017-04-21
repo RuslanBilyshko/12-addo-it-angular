@@ -66,6 +66,8 @@ app.factory('CarsFactory', function () {
             year: newCar.year,
             mileage: newCar.mileage
         });
+
+        debugger;
     };
 
     service.removeCar = function (car) {
