@@ -72,5 +72,12 @@ app.factory('CarsFactory', function () {
         carList = _.pull(carList, car);
     };
 
+    carList = _.sortBy(carList, 'name');
+
+    service.sortedCars = function (property) {
+        carList = _.sortBy(carList, property);
+    };
+
+
     return service;
 });

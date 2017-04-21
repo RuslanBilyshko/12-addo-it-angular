@@ -3,7 +3,7 @@
 <html ng-app="app">
 <head>
     <meta charset="utf-8">
-    <title>Angular SPA</title>
+    <title>Car List</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -47,10 +47,7 @@
                 <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
                      ng-repeat="car in CarsCtrl.cars">
                     <div class="editing-car-buttons">
-                        <button
-                                class="btn btn-danger btn-sm btn-remove-car"
-
-                        >Remove</button>
+                        <button ng-click="CarsCtrl.removeCar(car)" class="btn btn-danger btn-sm btn-remove-car"></button>
                     </div>
                     <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
                         <img class="img-responsive" src="./images/{{car.img}}" alt="">

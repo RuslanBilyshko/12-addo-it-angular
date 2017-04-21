@@ -87,9 +87,9 @@ app.controller('CarsCtrl', function (CarsFactory) {
         this.resetCar();
     };
 
-    // this.removeCar = function (car) {
-    //     CarsFactory.removeCar(car);
-    // };
+    this.removeCar = function (car) {
+        CarsFactory.removeCar(car);
+    };
 
     /**
      * FILTERS And Sorted
@@ -104,11 +104,9 @@ app.controller('CarsCtrl', function (CarsFactory) {
 
 
     this.sortedCars = function () {
-        console.log(this.sortedByProperty);
-        this.cars = _.sortBy(this.cars, this.sortedByProperty);
+        CarsFactory.sortedCars(this.sortedByProperty);
+        this.cars = CarsFactory.getCars();
     };
-
-    this.sortedCars();
 
 
 });
