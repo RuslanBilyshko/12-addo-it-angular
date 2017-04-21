@@ -18,9 +18,9 @@
             <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}}" ng-controller="CarsCtrl as CarsCtrl">
 
                 <section class="filters col-sm-12">
-                    <div class="sorted-form">
+                    <div class="sorted-form col-sm-3">
                         <div class="input-group">
-                            <label>Сортировать по:</label>
+                            <label>Сортировать по:&nbsp;</label>
                             <select ng-change="CarsCtrl.sortedCars()"
                                     ng-options="x as y for (x, y) in CarsCtrl.sortedProperties"
                                     ng-model="CarsCtrl.sortedByProperty"
@@ -29,7 +29,12 @@
                         </div>
                     </div>
 
-                    <div class="list-types-buttons">
+                    <div class="user-filters col-sm-7">
+                        <input size="10" type="text" ng-model="CarsCtr.maxPrice" value="100">&nbsp;-
+                        <input size="10" type="text" ng-model="CarsCtr.minPrice" value="">
+                    </div>
+
+                    <div class="list-types-buttons col-sm-2">
                         <button ng-click="CarsCtrl.setViewTypeList()"
                                 class="btn btn-default btn-type-list btn-sm {{CarsCtrl.classes.listActive}}">&nbsp;
                         </button>
@@ -42,7 +47,7 @@
 
                 <div class="car-lis-view-wrapper">
                     <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
-                         ng-repeat="car in CarsCtrl.cars">
+                         ng-repeat="car in CarsCtrl.cars | startFrom: CarsCtrl.startingItem() | limitTo: CarsCtrl.carsPerPage">
                         <div class="editing-car-buttons">
                             <button ng-click="CarsCtrl.removeCar(car)"
                                     class="btn btn-danger btn-sm btn-remove-car"></button>
@@ -59,7 +64,18 @@
                     </div>
                 </div>
 
-                <div id="add-form" class="add_form_wrapper" >
+                <div id="pagination" class="col-sm-12">
+
+                    <button class="btn btn-primary btn-sm" ng-disabled="CarsCtrl.firstPage()" ng-click="CarsCtrl.pageBack()">
+                        Назад
+                    </button>
+                    <span>{{CarsCtrl.currentPage+1}} из {{CarsCtrl.numberOfPages()}}</span>
+                    <button class=" btn btn-primary btn-sm" ng-disabled="CarsCtrl.lastPage()"
+                            ng-click="CarsCtrl.pageForward()">Вперед
+                    </button>
+                </div>
+
+                <div id="add-form" class="add_form_wrapper">
                     <form class="form" ng-submit="CarsCtrl.addCar()">
                         <div class="input-group">
                             <label>Марка</label>
@@ -101,6 +117,7 @@
 <script src="scripts/app.js" charset="utf-8"></script>
 <script src="scripts/controllers/CarsCtrl.js" charset="utf-8"></script>
 <script src="scripts/factories/CarsFactory.js" charset="utf-8"></script>
+<script src="scripts/filters/startFrom.js" charset="utf-8"></script>
 <!-- endbuild -->
 </body>
 </html>

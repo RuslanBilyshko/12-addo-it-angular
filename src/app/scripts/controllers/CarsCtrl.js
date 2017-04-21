@@ -84,6 +84,7 @@ app.controller('CarsCtrl', function (CarsFactory) {
      */
     this.addCar = function () {
         CarsFactory.addCar(this.newCar);
+        this.sortedCars();
         this.resetCar();
     };
 
@@ -106,6 +107,43 @@ app.controller('CarsCtrl', function (CarsFactory) {
     this.sortedCars = function () {
         CarsFactory.sortedCars(this.sortedByProperty);
         this.cars = CarsFactory.getCars();
+    };
+
+    /**
+     * Pagination
+     * -----------------------------------------
+     * Сдесь, мне кажеться, нужно добавить логики
+     * в фабрику так как я понимаю,
+     * получать постранично надо будет с бекенда
+     * Если можно коменты на эту тему :)
+     */
+
+    this.currentPage = 0;
+    this.carsPerPage = 3;
+
+    this.firstPage = function () {
+        return this.currentPage == 0;
+    };
+
+    this.lastPage = function () {
+        var lastPageNum = Math.ceil(this.cars.length / this.carsPerPage - 1);
+        return this.currentPage == lastPageNum;
+    };
+
+    this.numberOfPages = function () {
+        return Math.ceil(this.cars.length / this.carsPerPage);
+    };
+
+    this.startingItem = function () {
+        return this.currentPage * this.carsPerPage;
+    };
+
+    this.pageBack = function () {
+        this.currentPage = this.currentPage - 1;
+    };
+
+    this.pageForward = function () {
+        this.currentPage = this.currentPage + 1;
     };
 
 
