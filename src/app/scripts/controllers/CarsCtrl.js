@@ -119,7 +119,7 @@ app.controller('CarsCtrl', function (CarsFactory) {
      */
 
     this.currentPage = 0;
-    this.carsPerPage = 3;
+    this.carsPerPage = 6;
 
     this.firstPage = function () {
         return this.currentPage == 0;

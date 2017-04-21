@@ -107,3 +107,20 @@ header {
 #pagination {
   text-align: center;
 }
+
+.filters {
+  padding: 5px;
+  border: #ddd solid 1px;
+
+  label {
+    width: 100%;
+  }
+
+  .user-filters {
+    padding: 0;
+  }
+
+  .list-types-buttons {
+    padding: 0;
+  }
+}

@@ -16,9 +16,9 @@
                 <h1 class="logo">Car List</h1>
             </header>
             <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}}" ng-controller="CarsCtrl as CarsCtrl">
-
+                <!--FILTERS-->
                 <section class="filters col-sm-12">
-                    <div class="sorted-form col-sm-3">
+                    <div class="sorted-form col-sm-2">
                         <div class="input-group">
                             <label>Сортировать по:&nbsp;</label>
                             <select ng-change="CarsCtrl.sortedCars()"
@@ -29,12 +29,26 @@
                         </div>
                     </div>
 
-                    <div class="user-filters col-sm-7">
-                        <input size="10" type="text" ng-model="CarsCtr.maxPrice" value="100">&nbsp;-
-                        <input size="10" type="text" ng-model="CarsCtr.minPrice" value="">
+                    <div class="user-filters col-sm-9">
+                        <div class="filters-from-price col-sm-6">
+                            <form>
+                                <label>Цена: </label>
+                                <input size="10" type="text" ng-model="CarsCtr.minPrice" value="100">&nbsp;-
+                                <input size="10" type="text" ng-model="CarsCtr.maxPrice" value="">
+                                <button type="submit">Ok</button>
+                            </form>
+                        </div>
+                        <div class="filters-from-years col-sm-6">
+                            <form>
+                                <label>Год выпуска: </label>
+                                <input size="10" type="text" ng-model="CarsCtr.minYear" value="100">&nbsp;-
+                                <input size="10" type="text" ng-model="CarsCtr.maxYear" value="">
+                                <button type="submit">Ok</button>
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="list-types-buttons col-sm-2">
+                    <div class="list-types-buttons col-sm-1">
                         <button ng-click="CarsCtrl.setViewTypeList()"
                                 class="btn btn-default btn-type-list btn-sm {{CarsCtrl.classes.listActive}}">&nbsp;
                         </button>
@@ -44,7 +58,7 @@
                     </div>
 
                 </section>
-
+                <!--END FILTERS-->
                 <div class="car-lis-view-wrapper">
                     <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
                          ng-repeat="car in CarsCtrl.cars | startFrom: CarsCtrl.startingItem() | limitTo: CarsCtrl.carsPerPage">
@@ -66,7 +80,8 @@
 
                 <div id="pagination" class="col-sm-12">
 
-                    <button class="btn btn-primary btn-sm" ng-disabled="CarsCtrl.firstPage()" ng-click="CarsCtrl.pageBack()">
+                    <button class="btn btn-primary btn-sm" ng-disabled="CarsCtrl.firstPage()"
+                            ng-click="CarsCtrl.pageBack()">
                         Назад
                     </button>
                     <span>{{CarsCtrl.currentPage+1}} из {{CarsCtrl.numberOfPages()}}</span>
