@@ -106,6 +106,10 @@ app.factory('CarsFactory', function () {
 
     carList = _.sortBy(carList, 'name');
 
+    // carList = _.filter(carList, function (o) {
+    //     return o.year > 2000 && o.year < 2015;
+    // });
+
     service.sortedCars = function (property) {
         carList = _.sortBy(carList, property);
     };

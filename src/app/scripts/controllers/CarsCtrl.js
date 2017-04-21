@@ -109,6 +109,12 @@ app.controller('CarsCtrl', function (CarsFactory) {
         this.cars = CarsFactory.getCars();
     };
 
+
+    /**
+     * Range Filter With prop
+     */
+
+
     /**
      * Pagination
      * -----------------------------------------
