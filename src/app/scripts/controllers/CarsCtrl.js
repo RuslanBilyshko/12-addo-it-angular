@@ -45,8 +45,14 @@ app.controller('CarsCtrl', function (CarsFactory) {
     /**
      * Данные для отображения
      */
-    this.cars = CarsFactory.getCars();
+    this.cars = [];
 
+    this.getCars = function () {
+        this.cars = CarsFactory.allCars(
+            this.sortedByProperty
+        );
+
+    };
 
     /**
      * Год выпуска для формы добавления
@@ -104,15 +110,26 @@ app.controller('CarsCtrl', function (CarsFactory) {
     };
 
 
-    this.sortedCars = function () {
-        CarsFactory.sortedCars(this.sortedByProperty);
-        this.cars = CarsFactory.getCars();
-    };
-
-
     /**
      * Range Filter With prop
      */
+
+    this.rangeWithProperty = function (min, max, property) {
+
+        CarsFactory.filterWithProperty(min, max, property);
+        this.getCars();
+
+    };
+
+    this.rangeWithYear = function () {
+        this.rangeWithProperty(this.minYear, this.maxYear, 'year');
+    };
+
+    this.rangeWithPrice = function () {
+        this.rangeWithProperty(this.minPrice, this.maxPrice, 'price');
+    };
+
+    this.getCars();
 
 
     /**

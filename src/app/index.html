@@ -15,131 +15,130 @@
             <header class="col-sm-12">
                 <h1 class="logo">Car List</h1>
             </header>
-            <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}}" ng-controller="CarsCtrl as CarsCtrl">
+            <div class="content" ng-controller="CarsCtrl as CarsCtrl">
                 <!--FILTERS-->
-                <section class="filters col-sm-12">
-                    <div class="sorted-form col-sm-2">
-                        <div class="input-group">
-                            <label>Сортировать по:&nbsp;</label>
-                            <select ng-change="CarsCtrl.sortedCars()"
-                                    ng-options="x as y for (x, y) in CarsCtrl.sortedProperties"
-                                    ng-model="CarsCtrl.sortedByProperty"
-                                    class=""
-                            ></select>
+                <aside id="left-side-bar" class="col-sm-3">
+
+                    <div class="filters">
+
+                        <div class="user-filters">
+                            <div class="filters-from-price">
+                                <form ng-submit="CarsCtrl.rangeWithPrice()">
+                                    <label>Цена: </label>
+                                    <input size="4" type="text" ng-model="CarsCtrl.minPrice">
+                                    &nbsp;-
+                                    <input size="4" type="text" ng-model="CarsCtrl.maxPrice">
+                                    <button type="submit">Ok</button>
+                                </form>
+                            </div>
+                            <div class="filters-from-years">
+                                <form ng-submit="CarsCtrl.rangeWithYear()">
+                                    <label>Год выпуска: </label>
+                                    <input size="4" type="text" ng-model="CarsCtrl.minYear">
+                                    &nbsp;-
+                                    <input size="4" type="text" ng-model="CarsCtrl.maxYear">
+                                    <button type="submit">Ok</button>
+                                </form>
+
+
+                            </div>
                         </div>
                     </div>
-
-                    <div class="user-filters col-sm-9">
-                        <div class="filters-from-price col-sm-6">
-                            <form>
-                                <label>Цена: </label>
-                                <input size="10" type="text" ng-model="CarsCtr.minPrice" value="100">&nbsp;-
-                                <input size="10" type="text" ng-model="CarsCtr.maxPrice" value="">
-                                <button type="submit">Ok</button>
-                            </form>
-                        </div>
-                        <div class="filters-from-years col-sm-6">
-                            <form>
-                                <label>Год выпуска: </label>
-                                <input size="10" type="text" ng-model="CarsCtr.minYear" value="100">&nbsp;-
-                                <input size="10" type="text" ng-model="CarsCtr.maxYear" value="">
-                                <button type="submit">Ok</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="list-types-buttons col-sm-1">
-                        <button ng-click="CarsCtrl.setViewTypeList()"
-                                class="btn btn-default btn-type-list btn-sm {{CarsCtrl.classes.listActive}}">&nbsp;
-                        </button>
-                        <button ng-click="CarsCtrl.setViewTypeRow()"
-                                class="btn btn-default btn-type-row btn-sm {{CarsCtrl.classes.rowActive}}">&nbsp;
-                        </button>
-                    </div>
-
-                </section>
+                </aside>
                 <!--END FILTERS-->
-                <div class="car-lis-view-wrapper">
-                    <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
-                         ng-repeat="car in CarsCtrl.cars | startFrom: CarsCtrl.startingItem() | limitTo: CarsCtrl.carsPerPage">
-                        <div class="editing-car-buttons">
-                            <button ng-click="CarsCtrl.removeCar(car)"
-                                    class="btn btn-danger btn-sm btn-remove-car"></button>
+                <section class="car-list car-list-type-{{CarsCtrl.classes.viewType}} col-sm-9">
+                    <div class="filters col-sm-12">
+                        <div class="sorted-form pull-left">
+                            <div class="input-group">
+                                <label>Сортировать по:&nbsp;</label>
+                                <select ng-change="CarsCtrl.getCars()"
+                                        ng-options="x as y for (x, y) in CarsCtrl.sortedProperties"
+                                        ng-model="CarsCtrl.sortedByProperty"
+                                        class=""
+                                ></select>
+                            </div>
                         </div>
-                        <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
-                            <img class="img-responsive" src="./images/{{car.img}}" alt="">
-                        </div>
-                        <div class="car_info col-sm-{{CarsCtrl.classes.widthInfo}}">
-                            <h4 class="car_name">{{car.name}}</h4>
-                            <div class="car_price">${{car.price}}</div>
-                            <span class="car_year">{{car.year}}</span>
-                            <span class="car_mileage">{{car.mileage}}</span>
+
+                        <div class="list-types-buttons pull-right">
+                            <button ng-click="CarsCtrl.setViewTypeList()"
+                                    class="btn btn-default btn-type-list btn-sm {{CarsCtrl.classes.listActive}}">&nbsp;
+                            </button>
+                            <button ng-click="CarsCtrl.setViewTypeRow()"
+                                    class="btn btn-default btn-type-row btn-sm {{CarsCtrl.classes.rowActive}}">&nbsp;
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <div id="pagination" class="col-sm-12">
-
-<<<<<<< HEAD
-                <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
-                     ng-repeat="car in CarsCtrl.cars">
-                    <div class="editing-car-buttons">
-                        <button class="btn btn-danger btn-sm btn-remove-car">Remove</button>
+                    <div class="car-lis-view-wrapper">
+                        <div id="car-{{car.id}}" class="car col-sm-{{CarsCtrl.classes.widthRow}}"
+                             ng-repeat="car in CarsCtrl.cars    | startFrom: CarsCtrl.startingItem()
+                                                                | limitTo: CarsCtrl.carsPerPage
+                                                             ">
+                            <div class="editing-car-buttons">
+                                <button ng-click="CarsCtrl.removeCar(car)"
+                                        class="btn btn-danger btn-sm btn-remove-car"></button>
+                            </div>
+                            <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
+                                <img class="img-responsive" src="./images/{{car.img}}" alt="">
+                            </div>
+                            <div class="car_info col-sm-{{CarsCtrl.classes.widthInfo}}">
+                                <h4 class="car_name">{{car.name}}</h4>
+                                <div class="car_price">${{car.price}}</div>
+                                <span class="car_year">{{car.year}}</span>
+                                <span class="car_mileage">{{car.mileage}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="car_img col-sm-{{CarsCtrl.classes.widthImg}}">
-                        <img class="img-responsive" src="./images/{{car.img}}" alt="">
+
+                    <div id="pagination" class="col-sm-12">
+
+                        <button class="btn btn-primary btn-sm" ng-disabled="CarsCtrl.firstPage()"
+                                ng-click="CarsCtrl.pageBack()">
+                            Назад
+                        </button>
+                        <span>{{CarsCtrl.currentPage+1}} из {{CarsCtrl.numberOfPages()}}</span>
+                        <button class=" btn btn-primary btn-sm" ng-disabled="CarsCtrl.lastPage()"
+                                ng-click="CarsCtrl.pageForward()">Вперед
+                        </button>
                     </div>
-                    <div class="car_info col-sm-{{CarsCtrl.classes.widthInfo}}">
-                        <h4 class="car_name">{{car.name}}</h4>
-                        <div class="car_price">${{car.price}}</div>
-                        <span class="car_year">{{car.year}}</span>
-                        <span class="car_mileage">{{car.mileage}}</span>
+
+                    <div id="add-form" class="add_form_wrapper">
+                        <form class="form" ng-submit="CarsCtrl.addCar()">
+                            <div class="input-group">
+                                <label>Марка</label>
+                                <input ng-model="CarsCtrl.newCar.name" class="form-control" type="text"
+                                       placeholder="Марка">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Цена</label>
+                                <input ng-model="CarsCtrl.newCar.price" type="text" class="form-control"
+                                       placeholder="Цена">
+                            </div>
+                            <div class="input-group">
+                                <label>Пробег</label>
+                                <input ng-model="CarsCtrl.newCar.mileage" type="text" class="form-control"
+                                       placeholder="Пробег">
+                            </div>
+                            <div class="input-group">
+                                <label>Год выпуска</label>
+                                <select ng-model="CarsCtrl.newCar.year"
+                                        ng-options="x for (x, y) in CarsCtrl.years"
+                                        class="form-control">
+                                    <option value="">-- Год выпуска --</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Фото</label>
+                                <input ng-model="CarsCtrl.newCar.img" type="text" class="form-control"
+                                       placeholder="Фото">
+                            </div>
+                            <button type="submit" class="btn btn-success">Добавить</button>
+                        </form>
+
                     </div>
-=======
-                    <button class="btn btn-primary btn-sm" ng-disabled="CarsCtrl.firstPage()"
-                            ng-click="CarsCtrl.pageBack()">
-                        Назад
-                    </button>
-                    <span>{{CarsCtrl.currentPage+1}} из {{CarsCtrl.numberOfPages()}}</span>
-                    <button class=" btn btn-primary btn-sm" ng-disabled="CarsCtrl.lastPage()"
-                            ng-click="CarsCtrl.pageForward()">Вперед
-                    </button>
->>>>>>> 2935d96aa1c2fde767925eebcc1c1b53f0c7648b
-                </div>
-
-                <div id="add-form" class="add_form_wrapper">
-                    <form class="form" ng-submit="CarsCtrl.addCar()">
-                        <div class="input-group">
-                            <label>Марка</label>
-                            <input ng-model="CarsCtrl.newCar.name" class="form-control" type="text" placeholder="Марка">
-                        </div>
-
-                        <div class="input-group">
-                            <label>Цена</label>
-                            <input ng-model="CarsCtrl.newCar.price" type="text" class="form-control" placeholder="Цена">
-                        </div>
-                        <div class="input-group">
-                            <label>Пробег</label>
-                            <input ng-model="CarsCtrl.newCar.mileage" type="text" class="form-control"
-                                   placeholder="Пробег">
-                        </div>
-                        <div class="input-group">
-                            <label>Год выпуска</label>
-                            <select ng-model="CarsCtrl.newCar.year"
-                                    ng-options="x for (x, y) in CarsCtrl.years"
-                                    class="form-control">
-                                <option value="">-- Год выпуска --</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label>Фото</label>
-                            <input ng-model="CarsCtrl.newCar.img" type="text" class="form-control" placeholder="Фото">
-                        </div>
-                        <button type="submit" class="btn btn-success">Добавить</button>
-                    </form>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>
@@ -151,6 +150,7 @@
 <script src="scripts/factories/CarsFactory.js" charset="utf-8"></script>
 <script src="scripts/filters/startFrom.js" charset="utf-8"></script>
 <script src="scripts/filters/rangeWithYear.js" charset="utf-8"></script>
+
 <!-- endbuild -->
 </body>
 </html>

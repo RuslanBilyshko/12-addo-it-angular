@@ -77,7 +77,8 @@ app.factory('CarsFactory', function () {
      * Получение списка авто
      * @returns {*[]}
      */
-    service.getCars = function () {
+    service.allCars = function (sortedBy) {
+        carList = this.sortedCars(sortedBy);
         return carList;
     };
 
@@ -98,22 +99,26 @@ app.factory('CarsFactory', function () {
             year: newCar.year,
             mileage: newCar.mileage
         });
-
-        debugger;
     };
 
     service.removeCar = function (car) {
         carList = _.pull(carList, car);
     };
 
-    carList = _.sortBy(carList, 'name');
 
-    // carList = _.filter(carList, function (o) {
-    //     return o.year > 2000 && o.year < 2015;
-    // });
+    service.filterWithProperty = function (min, max, property) {
+        console.log(min, max, property);
+
+        if (min && max) {
+            carList = _.filter(carList, function (o) {
+                return o[property] >= min && o[property] <= max;
+            });
+        }
+    };
+
 
     service.sortedCars = function (property) {
-        carList = _.sortBy(carList, property);
+        return _.sortBy(carList, property);
     };
 
 
